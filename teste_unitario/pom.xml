@@ -6,10 +6,9 @@
 	<artifactId>teste-unitario</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>teste-unitario</name>
-	<description>Teste Unitario project for Spring Boot</description>
+	<description>Teste Unitario project</description>
 	<properties>
 		<java.version>11</java.version>
-		<junit.version>1.7.1</junit.version>
 	</properties>
     <dependencies>
         <dependency>
@@ -59,7 +58,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>net.home.Application</mainClass>
+                            <mainClass>com.example.demo.DemoApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

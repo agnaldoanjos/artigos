@@ -1,10 +1,6 @@
 package com.example.demo.logic;
 
 public class Exemplo {
-    // Método que soma dois números inteiros e retorna o resultado
-    public int somar(int a, int b) {
-        return a + b;
-    }
 
     // Método que verifica se um número é par e retorna true se for, caso contrário retorna false
     public boolean ehPar(int num) {

@@ -8,14 +8,6 @@ class ExemploTest {
 
     private Exemplo ex = new Exemplo();
 
-    // Teste para o método somar()
-    @Test
-    public void testSomar() {
-        assertEquals(ex.somar(2, 3), 5);
-        assertEquals(ex.somar(-2, 2), 0);
-        assertEquals(ex.somar(0, 0), 0);
-    }
-
     // Teste para o método ehPar()
     @Test
     public void testEhPar() {
