@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: my-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    ports:
+      - 28017:27017
+  
