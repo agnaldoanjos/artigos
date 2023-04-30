@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: local-postgres
+    ports:
+      - 6432:5432
+    volumes:
+      - type: bind
+        source: /c/data/postgres
+        target: /etc/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - PGDATA=/etc/data
+  

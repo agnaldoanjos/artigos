@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: local-mongo
+    volumes:
+      - type: bind
+        source: /c/data/mongo
+        target: /etc/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      HOME: /etc/data/db
+    ports:
+      - 28017:27017
+  
