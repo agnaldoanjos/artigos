@@ -1,6 +1,6 @@
 *** Settings ***
 Library             RequestsLibrary
-Library             FakerLibrary    locale=pt_BR
+Library             ../library/gerar_cpf.py
 Resource            ./robot_variables.robot
 Suite Setup         Initialize Suite
 Suite Teardown      Teardown Suite
@@ -16,14 +16,14 @@ Criar pessoa fisica
     Generate CPF
     &{headers}=    Create Dictionary    Content-Type=${CONTENT_TYPE}
     ${payload}=    Create Dictionary    id=0    nome=${nome}    cpf=${cpf}    dataNascimento=${dataNascimento}
-    ${response}=    POST On Session    pessoa_fisica_session    ${API_ENDPOINT}    json=${payload}    headers=${headers}
+    ${response}=   POST On Session    pessoa_fisica_session    ${API_ENDPOINT}    json=${payload}    headers=${headers}
     Should Be Equal As Strings    ${response.status_code}    201
 
 Atualizar pessoa fisica
     [Tags]    PUT
     &{headers}=    Create Dictionary    Content-Type=${CONTENT_TYPE}
     ${payload}=    Create Dictionary    nome=${nome} - Atualizado    cpf=${cpf}    dataNascimento=${dataNascimento}
-    ${response}=    PUT On Session    pessoa_fisica_session    ${API_ENDPOINT}/${cpf}    json=${payload}    headers=${headers}
+    ${response}=   PUT On Session    pessoa_fisica_session    ${API_ENDPOINT}/${cpf}    json=${payload}    headers=${headers}
     Should Be Equal As Strings    ${response.status_code}    200
 
 Obter pessoa fisica
@@ -46,6 +46,6 @@ Teardown Suite
     Delete All Sessions
 
 Generate CPF
-    ${cpf}    FakerLibrary.cpf
+    ${cpf}    Gerar CPF
     Set Global Variable    ${cpf}
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230503 20:19:04.338" rpa="false" schemaversion="3">
+<suite id="s1" name="Gerar Cpf" source="d:\git\repo\artigos\microsservico-pessoa-fisica-robot\testes\gerar_cpf.robot">
+<test id="s1-t1" name="Gerar CPF Aleatório" line="5">
+<kw name="Gerar Cpf" library="gerar_cpf">
+<var>${cpf}</var>
+<msg timestamp="20230503 20:19:04.385" level="INFO">${cpf} = 505.917.187-66</msg>
+<status status="PASS" starttime="20230503 20:19:04.385" endtime="20230503 20:19:04.388"/>
+</kw>
+<kw name="Should Match Regexp" library="BuiltIn">
+<arg>${cpf}</arg>
+<arg>\d{3}\\.\d{3}\\.\d{3}\\-\d{2}</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<msg timestamp="20230503 20:19:04.390" level="FAIL">'505.917.187-66' does not match 'd{3}\.d{3}\.d{3}\-d{2}'</msg>
+<status status="FAIL" starttime="20230503 20:19:04.389" endtime="20230503 20:19:04.391"/>
+</kw>
+<status status="FAIL" starttime="20230503 20:19:04.384" endtime="20230503 20:19:04.394">'505.917.187-66' does not match 'd{3}\.d{3}\.d{3}\-d{2}'</status>
+</test>
+<status status="FAIL" starttime="20230503 20:19:04.345" endtime="20230503 20:19:04.397"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Gerar Cpf">Gerar Cpf</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
