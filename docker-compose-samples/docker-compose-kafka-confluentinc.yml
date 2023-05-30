@@ -1,0 +1,47 @@
+version: '3'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    container_name: zookeeper-ml
+    networks: 
+      - local-bridge
+    ports:
+      - 2181:2181
+    environment:
+     ZOOKEEPER_CLIENT_PORT: 2181
+     ZOOKEEPER_TICK_TIME: 2000
+     ALLOW_ANONYMOUS_LOGIN: 'yes'
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: kafka-ml
+    networks: 
+      - local-bridge
+    depends_on:
+      - zookeeper
+    ports:
+      - 29092:9092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: CONTROLLER://:29093,PLAINTEXT://kafka-ml:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENERS: CONTROLLER://:29093,PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAME: CONTROLLER
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_NUM_PARTITIONS: 3
+  kafdrop:
+    image: obsidiandynamics/kafdrop:3.27.0
+    networks: 
+      - local-bridge
+    depends_on:
+      - kafka
+    ports:
+      - 19000:9000
+    environment:
+      KAFKA_BROKERCONNECT: kafka-ml:9092
+networks: 
+  local-bridge:
+    driver: bridge
